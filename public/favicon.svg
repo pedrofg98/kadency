@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Chevron duplo da Kadency. Em 16px o traço fino do wordmark somiria, então
+       aqui é branco sobre bloco coral, com traço mais grosso. -->
+  <rect width="32" height="32" rx="7" fill="#ff5c39" />
+  <path
+    d="M6.5 16h3M11.5 10.5l5.5 5.5-5.5 5.5M19.5 10.5l5.5 5.5-5.5 5.5"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>

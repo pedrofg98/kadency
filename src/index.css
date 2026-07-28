@@ -1,0 +1,283 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+    /* Marca — extraída da paleta Legitimuz */
+    --color-coral: var(--coral);
+    --color-coral-soft: var(--coral-soft);
+    --color-coral-tint: var(--coral-tint);
+    --color-coral-deep: var(--coral-deep);
+    --color-ink: var(--ink);
+    --color-ink-2: var(--ink-2);
+    --color-line: var(--line);
+    --color-wash: var(--wash);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    /* Paleta Legitimuz — neutros */
+    --ink: #1f1f1f;
+    --ink-2: #4b4b4b;
+    --line: #e1e1e1;
+    --wash: #f5f5f5;
+
+    /* Coral da marca Kadency (informado pelo cliente) + ramp do Legitimuz */
+    --coral: #ff5c39;
+    --coral-soft: #ff8167;
+    --coral-tint: #ffedea;
+    --coral-deep: #982d13;
+
+    --background: #fafafa;
+    --foreground: #1f1f1f;
+    --card: #ffffff;
+    --card-foreground: #1f1f1f;
+    --popover: #ffffff;
+    --popover-foreground: #1f1f1f;
+    --primary: #ff5c39;
+    /* Branco sobre o coral da marca dá ~3:1 — passa em componente de UI e
+       texto grande, não em texto pequeno. Decisão do cliente, alinhada ao
+       Legitimuz. Para recuperar contraste sem mudar a marca, o caminho é
+       escurecer o preenchimento (a partir de ~#d63e17 branco passa 4.5:1). */
+    --primary-foreground: #ffffff;
+    --secondary: #f5f5f5;
+    --secondary-foreground: #1f1f1f;
+    --muted: #f5f5f5;
+    --muted-foreground: #6d6d6d;
+    --accent: #ffedea;
+    --accent-foreground: #982d13;
+    --destructive: #cf2e2e;
+    --border: #e1e1e1;
+    --input: #e1e1e1;
+    --ring: #ff8167;
+    --chart-1: #ff5c39;
+    --chart-2: #ff8167;
+    --chart-3: #ffc6bb;
+    --chart-4: #6d6d6d;
+    --chart-5: #1f1f1f;
+    --radius: 0.75rem;
+    --sidebar: #fafafa;
+    --sidebar-foreground: #1f1f1f;
+    --sidebar-primary: #ff5c39;
+    --sidebar-primary-foreground: #1f1f1f;
+    --sidebar-accent: #f5f5f5;
+    --sidebar-accent-foreground: #1f1f1f;
+    --sidebar-border: #e1e1e1;
+    --sidebar-ring: #ff8167;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--coral);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  /* Números que não "pulam" enquanto o cronômetro corre */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  .display {
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+/* ---------- keyframes ---------- */
+
+/* Marquee: o conteúdo é duplicado no DOM e a faixa anda meia largura,
+   então o ponto final é idêntico ao inicial e o loop não tem emenda. */
+@keyframes marquee-to-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-to-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Anel cônico girando atrás do CTA */
+@keyframes rotate-gradient {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Partículas do hero */
+@keyframes particle-float {
+  0% {
+    opacity: 0.2;
+    transform: translateY(0) scale(0.94);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(-12px) scale(1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(0) scale(0.94);
+  }
+}
+
+@layer components {
+  .marquee-viewport {
+    position: relative;
+    overflow: hidden;
+    /* as pontas somem em vez de cortarem no seco */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 10%,
+      #000 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  }
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee-to-left 42s linear infinite;
+  }
+  .marquee[data-direction='right'] {
+    animation-name: marquee-to-right;
+  }
+  /* Pausa quando o ponteiro está em cima — quem quer ler consegue ler */
+  .marquee-viewport:hover .marquee,
+  .marquee-viewport:focus-within .marquee {
+    animation-play-state: paused;
+  }
+
+  /* Anel coral girando atrás de um elemento opaco.
+     É um irmão posicionado atrás, não um ::before com z-index negativo —
+     um ::before nunca passa por trás do fundo do próprio elemento. */
+  .aura-spin {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      var(--coral) 70deg,
+      var(--coral-soft) 130deg,
+      transparent 220deg,
+      transparent 360deg
+    );
+    animation: rotate-gradient 4.5s linear infinite;
+  }
+
+  /* Estado inicial de tudo que é revelado no scroll. O JS só troca o
+     data-revealed; a transição inteira mora aqui. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal][data-revealed='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sem o estado inicial não haveria nada para reduzir: o conteúdo
+     precisa aparecer mesmo que o observer nunca rode. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  /* O marquee para, mas continua rolável na mão */
+  .marquee {
+    animation: none !important;
+  }
+  .marquee-viewport {
+    overflow-x: auto;
+  }
+  .aura-spin {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
