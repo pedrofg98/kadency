@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { ChatMock } from './mocks/ChatMock'
-import { KanbanMock } from './mocks/KanbanMock'
 import { AgentsMock } from './mocks/AgentsMock'
 import { CalendarMock } from './mocks/CalendarMock'
 import { Parallax, Reveal } from './motion/Reveal'
@@ -14,8 +13,6 @@ type Feature = {
   points: string[]
   link: string
   visual: ReactNode
-  /** 'wide' põe o visual em largura total — o funil precisa das 4 colunas. */
-  layout?: 'split' | 'wide'
 }
 
 const FEATURES: Feature[] = [
@@ -31,20 +28,6 @@ const FEATURES: Feature[] = [
     ],
     link: 'Ver o inbox',
     visual: <ChatMock />,
-  },
-  {
-    id: 'funil',
-    eyebrow: 'CRM',
-    title: 'Leads do WhatsApp organizados pelo agente e pela operação humana',
-    body: 'O card entra em Novo, o agente qualifica e move sozinho até Reunião Agendada. Você enxerga temperatura, responsável e há quanto tempo cada lead está parado.',
-    points: [
-      'Kanban com as etapas que você configura',
-      'Temperatura do lead: quente, morno, esfriando',
-      'Filtro de quem está esfriando antes de virar prejuízo',
-    ],
-    link: 'Ver o funil',
-    visual: <KanbanMock />,
-    layout: 'wide',
   },
   {
     id: 'agentes',
@@ -74,22 +57,28 @@ const FEATURES: Feature[] = [
   },
 ]
 
-export function Features() {
+/**
+ * `only` recorta quais blocos renderizar. Existe para a seção do CRM entrar
+ * no meio da sequência sem quebrar a alternância esquerda/direita: cada recorte
+ * reinicia a contagem, e é ela que decide de que lado o visual cai.
+ */
+export function Features({ only }: { only?: string[] }) {
+  const items = only ? FEATURES.filter((feature) => only.includes(feature.id)) : FEATURES
+
   return (
     <section className="border-b border-line">
       <div className="mx-auto max-w-6xl px-5">
-        {FEATURES.map((feature, index) => {
-          const wide = feature.layout === 'wide'
-          const flipped = !wide && index % 2 === 1
+        {items.map((feature, index) => {
+          const flipped = index % 2 === 1
           return (
             <div
               key={feature.id}
               id={feature.id}
-              className={`scroll-mt-20 py-16 md:py-24 ${
-                wide ? 'grid gap-10' : 'grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16'
-              } ${index > 0 ? 'border-t border-line' : ''}`}
+              className={`grid scroll-mt-20 gap-10 py-16 md:py-24 lg:grid-cols-2 lg:items-center lg:gap-16 ${
+                index > 0 ? 'border-t border-line' : ''
+              }`}
             >
-              <div className={wide ? 'max-w-2xl' : flipped ? 'lg:order-2' : ''}>
+              <div className={flipped ? 'lg:order-2' : ''}>
                 <Reveal>
                   <p className="eyebrow text-coral-deep">{feature.eyebrow}</p>
                   <h2 className="display mt-4 text-3xl font-semibold text-ink sm:text-4xl">
@@ -121,7 +110,7 @@ export function Features() {
               </div>
 
               <Reveal delay={140} className={flipped ? 'lg:order-1' : ''}>
-                {wide ? feature.visual : <Parallax speed={flipped ? -28 : -44}>{feature.visual}</Parallax>}
+                <Parallax speed={flipped ? -28 : -44}>{feature.visual}</Parallax>
               </Reveal>
             </div>
           )

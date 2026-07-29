@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Inbox, MessageSquare, ListChecks, KanbanSquare, CalendarCheck } from 'lucide-react'
+import {
+  Inbox,
+  MessageSquare,
+  ListChecks,
+  KanbanSquare,
+  RotateCcw,
+  CalendarCheck,
+} from 'lucide-react'
 import { Reveal } from './motion/Reveal'
 import { prefersReducedMotion } from '@/lib/motion'
 
@@ -9,7 +16,7 @@ import { prefersReducedMotion } from '@/lib/motion'
  * contar quando ela entra pela parte de baixo e fecha quando chega ao terço
  * superior.
  *
- * A numeração 01–05 é literal: isto é uma sequência de verdade, cada etapa só
+ * A numeração é literal: isto é uma sequência de verdade, cada etapa só
  * acontece depois da anterior.
  */
 
@@ -35,6 +42,13 @@ const STEPS = [
     caption: 'Conforme a conversa evolui.',
   },
   {
+    // entra depois do funil de propósito: é o funil que aponta quem esfriou,
+    // e o follow-up é o que resgata esse lead até virar reunião
+    icon: RotateCcw,
+    title: 'Volta em quem sumiu.',
+    caption: 'Follow-up sem ninguém lembrar.',
+  },
+  {
     icon: CalendarCheck,
     title: 'Marca na agenda do closer.',
     caption: 'Direto no Google Calendar.',
@@ -42,6 +56,14 @@ const STEPS = [
 ]
 
 const SEGMENTS = STEPS.length - 1
+
+/**
+ * A trilha vai do centro do primeiro nó ao do último, não de borda a borda.
+ * Com colunas iguais, esses centros caem a meia coluna de cada ponta — daí o
+ * cálculo em vez de número fixo, senão a linha desalinha a cada etapa nova.
+ */
+const EDGE = 100 / (STEPS.length * 2)
+const SPAN = 100 - EDGE * 2
 
 /** Progresso de 0 a 1 conforme o elemento atravessa a viewport. */
 function useTrackProgress(ref: React.RefObject<HTMLElement | null>) {
@@ -113,7 +135,7 @@ export function Flow() {
             Do anúncio à reunião marcada.
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">
-            Cinco etapas, um ciclo inteiro de atendimento — sem ninguém do seu time no meio do
+            Seis etapas, um ciclo inteiro de atendimento — sem ninguém do seu time no meio do
             caminho.
           </p>
         </Reveal>
@@ -121,29 +143,33 @@ export function Flow() {
         {/* ---------- trilha horizontal (lg+) ---------- */}
         <div ref={trackRef} className="mt-20 hidden lg:block">
           <div className="relative">
-            {/* A trilha vai do centro do primeiro nó ao do último. Com 5 colunas
-                iguais esses centros caem em 10% e 90%, então a linha ocupa os
-                80% do meio — não a largura inteira do contêiner. */}
-            <div className="absolute left-[10%] right-[10%] top-7 h-px bg-line" />
+            <div
+              className="absolute top-7 h-px bg-line"
+              style={{ left: `${EDGE}%`, right: `${EDGE}%` }}
+            />
             <div
               className="absolute top-7 h-px bg-coral transition-[width] duration-200 ease-out"
-              style={{ left: '10%', width: `${(head / SEGMENTS) * 80}%` }}
+              style={{ left: `${EDGE}%`, width: `${(head / SEGMENTS) * SPAN}%` }}
             />
             {/* ponto luminoso na ponta */}
             <div
               className="absolute top-7 -ml-[5px] -mt-[5px] size-2.5 rounded-full bg-coral shadow-[0_0_0_5px_rgba(255,92,57,0.22)] transition-[left,opacity] duration-200 ease-out"
               style={{
-                left: `${10 + (head / SEGMENTS) * 80}%`,
+                left: `${EDGE + (head / SEGMENTS) * SPAN}%`,
                 // some ao chegar no fim: parado em cima do último nó vira sujeira
                 opacity: head > SEGMENTS - 0.05 ? 0 : 1,
               }}
             />
 
-            <ol className="relative grid grid-cols-5">
+            {/* colunas por style: `grid-cols-${n}` não sobrevive ao purge do Tailwind */}
+            <ol
+              className="relative grid"
+              style={{ gridTemplateColumns: `repeat(${STEPS.length}, minmax(0, 1fr))` }}
+            >
               {STEPS.map((item, index) => {
                 const reached = head >= index - 0.4
                 return (
-                  <li key={item.title} className="flex flex-col items-center px-4 text-center">
+                  <li key={item.title} className="flex flex-col items-center px-2.5 text-center">
                     <span
                       className={`flex size-14 items-center justify-center rounded-full border-2 border-dashed transition-colors duration-500 ${
                         reached ? 'border-coral/45' : 'border-transparent'
@@ -181,7 +207,7 @@ export function Flow() {
                       {item.title}
                     </p>
                     <p
-                      className={`mt-3 max-w-[14rem] text-sm leading-relaxed transition-colors duration-500 ${
+                      className={`mt-3 max-w-[12rem] text-sm leading-relaxed transition-colors duration-500 ${
                         reached ? 'text-muted-foreground' : 'text-ink/15'
                       }`}
                     >

@@ -7,7 +7,7 @@ import { Wordmark } from './Wordmark'
 const LINKS = [
   { href: '#como-funciona', label: 'Como funciona' },
   { href: '#atendimento', label: 'Atendimento' },
-  { href: '#funil', label: 'CRM' },
+  { href: '#crm', label: 'CRM' },
   { href: '#agentes', label: 'Agentes' },
   { href: '#agenda', label: 'Agenda' },
 ]

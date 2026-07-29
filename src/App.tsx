@@ -1,12 +1,12 @@
 import { Nav } from '@/components/site/Nav'
 import { Hero } from '@/components/site/Hero'
-import { Origins } from '@/components/site/Origins'
 import { Flow } from '@/components/site/Flow'
 import { Dashboard } from '@/components/site/Dashboard'
 import { Features } from '@/components/site/Features'
+import { CrmModules } from '@/components/site/CrmModules'
 import { Toolkit } from '@/components/site/Toolkit'
+import { Numbers } from '@/components/site/Numbers'
 import { Testimonial } from '@/components/site/Testimonial'
-import { Integrations } from '@/components/site/Integrations'
 import { FinalCta } from '@/components/site/FinalCta'
 import { Footer } from '@/components/site/Footer'
 import { ScrollProgress } from '@/components/site/motion/ScrollProgress'
@@ -24,13 +24,16 @@ function App() {
       <Nav />
       <main id="conteudo">
         <Hero />
-        <Origins />
         <Flow />
         <Dashboard />
-        <Features />
+        {/* a seção do CRM entra entre Atendimento e Agentes, no lugar que era
+            do bloco do funil */}
+        <Features only={['atendimento']} />
+        <CrmModules />
+        <Features only={['agentes', 'agenda']} />
         <Toolkit />
+        <Numbers />
         <Testimonial />
-        <Integrations />
         <FinalCta />
       </main>
       <Footer />
