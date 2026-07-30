@@ -1,19 +1,8 @@
 import { ArrowUp } from 'lucide-react'
 import { Wordmark } from './Wordmark'
 
-/** O lucide v1 removeu os ícones de marca, então o glifo vai desenhado. */
-function InstagramGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className="size-4" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
-    </svg>
-  )
-}
-
 /**
- * TODO(cliente): e-mail, perfil do Instagram, cidade e CNPJ precisam dos dados
+ * TODO(cliente): e-mail, cidade e CNPJ precisam dos dados
  * reais. Contato inventado é pior que contato ausente: o visitante escreve para
  * um endereço que não existe e conclui que ninguém atende.
  */
@@ -48,17 +37,6 @@ export function Footer() {
             <p className="mt-5 max-w-xs leading-relaxed text-white/55">
               Gestão de leads com agentes de IA que atendem, qualificam e marcam a reunião.
             </p>
-
-            {/* TODO(cliente): trocar pelo perfil real e reativar o link. Ficou
-                sem href de propósito: âncora morta leva o visitante a clicar e
-                não acontecer nada, e um endereço chutado pode apontar para o
-                Instagram de outra pessoa. */}
-            <span
-              aria-hidden="true"
-              className="mt-7 inline-flex size-10 items-center justify-center rounded-full border border-white/15 text-white/35"
-            >
-              <InstagramGlyph />
-            </span>
           </div>
 
           <div>
