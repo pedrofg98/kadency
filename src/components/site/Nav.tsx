@@ -10,6 +10,7 @@ const LINKS = [
   { href: '#crm', label: 'CRM' },
   { href: '#agentes', label: 'Agentes' },
   { href: '#agenda', label: 'Agenda' },
+  { href: '#planos', label: 'Planos' },
 ]
 
 /**

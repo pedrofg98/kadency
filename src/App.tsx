@@ -7,6 +7,7 @@ import { CrmModules } from '@/components/site/CrmModules'
 import { Toolkit } from '@/components/site/Toolkit'
 import { Numbers } from '@/components/site/Numbers'
 import { Testimonial } from '@/components/site/Testimonial'
+import { Pricing } from '@/components/site/Pricing'
 import { FinalCta } from '@/components/site/FinalCta'
 import { Footer } from '@/components/site/Footer'
 import { ScrollProgress } from '@/components/site/motion/ScrollProgress'
@@ -34,6 +35,7 @@ function App() {
         <Toolkit />
         <Numbers />
         <Testimonial />
+        <Pricing />
         <FinalCta />
       </main>
       <Footer />
