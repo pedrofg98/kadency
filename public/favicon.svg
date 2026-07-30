@@ -1,13 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- Chevron duplo da Kadency. Em 16px o traço fino do wordmark somiria, então
-       aqui é branco sobre bloco coral, com traço mais grosso. -->
-  <rect width="32" height="32" rx="7" fill="#ff5c39" />
-  <path
-    d="M6.5 16h3M11.5 10.5l5.5 5.5-5.5 5.5M19.5 10.5l5.5 5.5-5.5 5.5"
-    stroke="#fff"
-    stroke-width="3"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    fill="none"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Versão app icon do mark novo: quadrado coral com as três barras brancas
+       de ponta cortada em diagonal. Preenchido, e não vazado, porque em 16px
+       uma marca sem fundo desaparece contra abas claras e escuras. -->
+  <rect width="64" height="64" rx="15" fill="#FF5C39"/>
+  <g fill="#fff">
+    <path d="M14 19h37l-8 6.5H14z"/>
+    <path d="M14 28.75h30.5l-8 6.5H14z"/>
+    <path d="M14 38.5h24l-8 6.5H14z"/>
+  </g>
 </svg>

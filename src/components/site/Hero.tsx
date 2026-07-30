@@ -2,16 +2,31 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Parallax, Reveal } from './motion/Reveal'
 import { Particles } from './motion/Particles'
+import { DarkVeil } from './motion/DarkVeil'
+import { ProductShot } from './ProductShot'
+import dashboard from '@/assets/dashboard.webp'
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-line">
-      {/* Brilho coral de fundo, deslocando mais devagar que o conteúdo */}
-      <Parallax speed={90} className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-88 left-1/2 size-200 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--coral-tint)_0%,transparent_65%)]" />
-        <div className="absolute -left-60 top-4 size-120 rounded-full bg-[radial-gradient(circle,var(--coral-tint)_0%,transparent_70%)] opacity-60" />
-        <div className="absolute -right-60 -top-12 size-120 rounded-full bg-[radial-gradient(circle,var(--coral-tint)_0%,transparent_70%)] opacity-60" />
-      </Parallax>
+      {/* Véu animado ao fundo. A máscara radial abre um vazio no miolo, onde
+          mora o título — sem ela o shader passa por trás do texto e come o
+          contraste. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70 [mask-image:radial-gradient(ellipse_62%_40%_at_50%_26%,transparent_30%,black_85%)]"
+      >
+        <DarkVeil
+          speed={0.55}
+          warpAmount={0.08}
+          resolutionScale={0.55}
+          tintAmount={1}
+          alphaGain={4.5}
+          /* sem isto o brilho do CPPN fica no rodapé do hero, atrás do print
+             do dashboard — ou seja, invisível */
+          flipY={false}
+        />
+      </div>
       <Particles />
 
       <div className="mx-auto max-w-6xl px-5 py-20 text-center md:py-32">
@@ -69,6 +84,19 @@ export function Hero() {
           <p className="mt-6 text-sm text-muted-foreground">
             Demo de 20 minutos. Conectamos no seu WhatsApp e no seu Google Calendar.
           </p>
+        </Reveal>
+
+        {/* A captura sobe um pouco mais devagar que o texto: o quadro entra na
+            tela enquanto o hero ainda está saindo, e a dobra deixa de ser um
+            corte seco. */}
+        <Reveal delay={320}>
+          <Parallax speed={-28} className="mt-16 md:mt-20">
+            <ProductShot
+              src={dashboard}
+              alt="Dashboard da Kadency com as métricas de atendimento do agente"
+              caption="*Dados fictícios."
+            />
+          </Parallax>
         </Reveal>
       </div>
     </section>

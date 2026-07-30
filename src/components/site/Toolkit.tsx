@@ -1,75 +1,96 @@
-import { BookOpen, Sparkles, Zap } from 'lucide-react'
 import { Reveal } from './motion/Reveal'
+import sugestoes from '@/assets/aprendizado-sugestoes.webp'
+import ganho from '@/assets/aprendizado-ganho.webp'
 
-const ITEMS = [
+/**
+ * Os dois modos de aprendizado do agente, no formato de card largo: numeração
+ * e texto à esquerda, ilustração à direita, cada bloco num painel escuro.
+ *
+ * O recorte em dois vem do próprio dono do produto: "aprendizado tem duas
+ * maneiras — sugestão de melhorias, e quando dá ganho ele se melhora com base
+ * numa conversa que deu certo".
+ */
+const BLOCKS = [
   {
-    icon: BookOpen,
-    title: 'Base de conhecimento',
-    body: 'Suba tabela de preços, política de desconto e as objeções que seu time já sabe responder. O agente cita a fonte em vez de inventar.',
-    detail: 'PDF, planilha, link ou texto colado.',
+    number: '01',
+    eyebrow: 'Sugestão de melhorias',
+    title: 'Cada conversa vira uma sugestão de ajuste no roteiro.',
+    body: 'O agente marca onde travou, o que confundiu o lead e a resposta que faltou. As sugestões chegam com o trecho da conversa que as originou — e nenhuma entra no ar sem você aprovar.',
+    image: sugestoes,
+    alt: 'Balões de conversa empilhados com um destacado acima, representando a sugestão de melhoria',
   },
   {
-    icon: Sparkles,
-    title: 'Aprendizado',
-    body: 'Conversas reais viram sugestões de melhoria no roteiro. Você aprova o que entra — o agente não muda de tom sozinho.',
-    detail: 'Cada sugestão vem com o trecho da conversa que a originou.',
-  },
-  {
-    icon: Zap,
-    title: 'Automações',
-    body: 'Follow-up de quem sumiu, aviso quando um lead esfria, movimentação no funil. Regras suas, disparadas sem ninguém lembrar.',
-    detail: 'Dispara por tempo parado, etapa ou resposta do lead.',
+    number: '02',
+    eyebrow: 'Aprendizado com o ganho',
+    title: 'Quando a venda fecha, ele estuda a conversa que deu certo.',
+    body: 'A cada ganho, o agente reconstrói o caminho que levou até ali: a ordem das perguntas, a objeção que foi quebrada e o argumento que virou o jogo. Esse caminho passa a valer nas próximas conversas.',
+    image: ganho,
+    alt: 'Selo de negócio ganho envolvido por uma seta que retorna, representando o aprendizado em ciclo',
   },
 ]
 
-/**
- * Os cards grudam em alturas escalonadas: o primeiro para, o segundo sobe e
- * encosta logo abaixo dele, e assim por diante — a pilha se monta na rolagem.
- * Cada card precisa de fundo opaco, senão a pilha vaza.
- */
 export function Toolkit() {
   return (
-    <section className="border-b border-line bg-ink">
+    <section id="aprendizado" className="scroll-mt-20 border-b border-line bg-ink">
       <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
         <Reveal>
-          <p className="eyebrow text-coral-soft">Por trás do agente</p>
-          <h2 className="display mt-4 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
-            O que faz o agente responder certo, e não só responder rápido
+          <p className="eyebrow text-coral-soft">Aprendizado</p>
+          <h2 className="display mt-4 max-w-3xl text-3xl font-semibold text-white sm:text-4xl">
+            O agente não fica parado no roteiro que você escreveu
           </h2>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/60">
+            Ele melhora por dois caminhos — e em nenhum dos dois perde o contexto da conversa.
+          </p>
         </Reveal>
 
+        {/* Os cards grudam em alturas escalonadas e a pilha se monta na rolagem.
+            O sticky mora no <li>, nunca dentro de um Reveal: o transform do
+            Reveal viraria o bloco de contenção e prenderia o card no próprio
+            wrapper. Fundo opaco por isso mesmo — senão a pilha vaza. */}
         <ul className="mt-12">
-          {ITEMS.map((item, index) => (
+          {BLOCKS.map((block, index) => (
             <li
-              key={item.title}
+              key={block.number}
               className="sticky mb-5 last:mb-0"
               style={{ top: `${6.5 + index * 2.25}rem` }}
             >
-              {/* A sombra para cima é o que faz a pilha ser lida como pilha:
-                  sem ela o card de cima só "suja" o de baixo. */}
-              <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#2b2b2b] p-6 shadow-[0_-10px_30px_-6px_rgba(0,0,0,0.55)] sm:p-8">
-                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-7">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-coral/15 text-coral-soft">
-                    <item.icon className="size-5" />
-                  </span>
-                  <div>
-                    <h3 className="flex items-baseline gap-3 text-xl font-semibold text-white">
-                      <span className="tnum font-mono text-xs text-coral-soft">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl leading-relaxed text-white/65">{item.body}</p>
-                    <p className="mt-3 text-sm text-white/40">{item.detail}</p>
-                  </div>
+              <article className="grid overflow-hidden rounded-2xl border border-white/10 bg-[#252525] shadow-[0_-10px_30px_-6px_rgba(0,0,0,0.55)] lg:grid-cols-2">
+                <div className="flex flex-col justify-center p-8 sm:p-12">
+                  <p className="flex items-center gap-4">
+                    <span className="tnum font-mono text-xs text-white/45">{block.number}</span>
+                    <span className="h-px w-8 bg-white/20" />
+                    <span className="eyebrow text-coral-soft">{block.eyebrow}</span>
+                  </p>
+
+                  <h3 className="display mt-8 text-2xl font-semibold text-white sm:text-3xl">
+                    {block.title}
+                  </h3>
+                  <p className="mt-5 max-w-md leading-relaxed text-white/60">{block.body}</p>
                 </div>
-              </div>
+
+                {/* A imagem preenche o painel inteiro em vez de flutuar com
+                    respiro: o fundo dela já é quase preto, mas não idêntico ao
+                    do card, e qualquer folga deixaria uma emenda de tom à
+                    vista. Assim o fundo da imagem passa a ser o painel. */}
+                <div className="min-h-[15rem] lg:min-h-0">
+                  <img
+                    src={block.image}
+                    alt={block.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </article>
             </li>
           ))}
-        </ul>
 
-        {/* respiro para a pilha terminar de se montar antes da próxima seção */}
-        <div className="h-24 md:h-40" />
+          {/* Espaçador dentro da lista, não padding no <ul>: o sticky é
+              confinado ao content box do pai, então padding-bottom não estende
+              o alcance — só altura real de um filho em fluxo estende. É esse
+              vão que dá tempo da pilha se montar antes de soltar. */}
+          <li aria-hidden="true" className="h-[55vh]" />
+        </ul>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { ArrowRight } from 'lucide-react'
-import { ChatMock } from './mocks/ChatMock'
+import { InboxShot } from './mocks/InboxShot'
 import { AgentsMock } from './mocks/AgentsMock'
 import { CalendarMock } from './mocks/CalendarMock'
 import { Parallax, Reveal } from './motion/Reveal'
@@ -27,7 +27,7 @@ const FEATURES: Feature[] = [
       'Handoff para humano sem o lead repetir nada',
     ],
     link: 'Ver o inbox',
-    visual: <ChatMock />,
+    visual: <InboxShot />,
   },
   {
     id: 'agentes',
