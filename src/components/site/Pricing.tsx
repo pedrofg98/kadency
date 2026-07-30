@@ -26,20 +26,23 @@ const PLANOS = [
   {
     metodo: 'Pix',
     valor: 'R$ 10.000',
-    nota: 'Pagamento à vista, no melhor preço.',
+    periodo: '/ano',
+    nota: 'Plano anual pago à vista, no melhor preço.',
     destaque: true,
     selo: 'Melhor preço',
   },
   {
     metodo: 'Cartão de crédito',
-    valor: 'R$ 14.400',
-    nota: 'Parcelamento disponível na finalização.',
+    valor: 'R$ 1.200',
+    periodo: '/mês',
+    nota: 'Plano anual no cartão, ao longo de 12 meses.',
     destaque: false,
   },
   {
     metodo: 'Recorrência',
-    valor: 'R$ 18.000',
-    nota: 'Cobrança automática, sem pagamento inicial.',
+    valor: 'R$ 1.500',
+    periodo: '/mês',
+    nota: 'Cobrança mensal automática, sem pagamento inicial.',
     destaque: false,
   },
 ]
@@ -82,7 +85,9 @@ export function Pricing() {
 
                 <p className="display mt-5 text-4xl font-semibold text-ink">
                   {plano.valor}
-                  <span className="ml-1.5 text-base font-medium text-muted-foreground">/ano</span>
+                  <span className="ml-1.5 text-base font-medium text-muted-foreground">
+                    {plano.periodo}
+                  </span>
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{plano.nota}</p>
 
@@ -116,8 +121,8 @@ export function Pricing() {
 
         <Reveal>
           <p className="mx-auto mt-10 max-w-xl text-xs leading-relaxed text-muted-foreground">
-            Todos os valores são anuais. A implantação e a configuração do primeiro agente estão
-            inclusas em qualquer forma de pagamento.
+            O plano é sempre anual. No Pix o pagamento é à vista; no cartão e na recorrência, mensal.
+            A implantação e a configuração do primeiro agente estão inclusas nas três formas.
           </p>
         </Reveal>
       </div>
