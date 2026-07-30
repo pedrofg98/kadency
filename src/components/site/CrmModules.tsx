@@ -10,9 +10,11 @@ import campanhas from '@/assets/crm/campanhas.webp'
  * TODO(cliente): as descrições de Produtos e Campanhas foram inferidas — só vi
  * esses dois no menu lateral, sem print da tela. Confirme o que cada um faz.
  *
- * As ilustrações foram geradas no Magnific (modelo GPT 2) na linguagem plana
- * do logo. São abstratas de propósito, não capturas da interface: imagem de UI
- * inventada promete telas que o produto não tem.
+ * As ilustrações seguem a identidade nova: o anel de quatro arcos do símbolo
+ * com o gradiente coral para âmbar, e o ícone do módulo em traço fino no
+ * centro. Geradas no Magnific (GPT 2). São abstratas de propósito, não
+ * capturas da interface: imagem de UI inventada promete telas que o produto
+ * não tem.
  */
 const MODULES = [
   {
