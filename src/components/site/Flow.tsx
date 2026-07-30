@@ -135,7 +135,7 @@ export function Flow() {
             Do anúncio à reunião marcada.
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-2">
-            Seis etapas, um ciclo inteiro de atendimento — sem ninguém do seu time no meio do
+            Seis etapas e um ciclo inteiro de atendimento, sem ninguém do seu time no meio do
             caminho.
           </p>
         </Reveal>

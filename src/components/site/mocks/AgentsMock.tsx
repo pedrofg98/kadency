@@ -14,8 +14,8 @@ import { prefersReducedMotion } from '@/lib/motion'
 
 const AGENTS = [
   { name: 'Sibele', model: 'Atendimento geral · pt-BR', conversas: 12 },
-  { name: 'Marcos — SDR Imóveis', model: 'Qualificação de imóveis · pt-BR', conversas: 7 },
-  { name: 'Luna — SDR SaaS', model: 'Qualificação B2B · pt-BR', conversas: 4 },
+  { name: 'Marcos · SDR Imóveis', model: 'Qualificação de imóveis · pt-BR', conversas: 7 },
+  { name: 'Luna · SDR SaaS', model: 'Qualificação B2B · pt-BR', conversas: 4 },
 ]
 
 const ROW_H = 68 // px — precisa bater com a altura real da linha (py-3.5 + conteúdo)

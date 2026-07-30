@@ -9,13 +9,13 @@ const MESSAGES = [
   {
     from: 'agent' as const,
     time: '09:12',
-    text: 'Oi, Camila! Tem sim — restam três, duas com varanda. Você procura para morar ou investir?',
+    text: 'Oi, Camila! Tem sim: restam três, duas com varanda. Você procura para morar ou investir?',
   },
   { from: 'lead' as const, time: '09:13', text: 'Para morar. Mas dependo de financiamento.' },
   {
     from: 'agent' as const,
     time: '09:13',
-    text: 'Combina. As três entram no Minha Casa Minha Vida. Consigo te encaixar com o Rodrigo amanhã às 10h ou 15h — qual funciona?',
+    text: 'Combina. As três entram no Minha Casa Minha Vida. Consigo te encaixar com o Rodrigo amanhã às 10h ou 15h. Qual funciona?',
   },
   { from: 'lead' as const, time: '09:14', text: '10h fica ótimo.' },
 ]

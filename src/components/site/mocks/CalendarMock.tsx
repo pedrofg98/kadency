@@ -32,7 +32,7 @@ const BUSY: Record<string, string> = {
   '2-0': 'Apresentação CTC',
   '3-1': 'Daily | Projetos',
   '3-3': 'Almoço',
-  '4-0': 'VIA — Rush',
+  '4-0': 'VIA · Rush',
   '4-2': 'Alinhamento',
 }
 
@@ -78,7 +78,7 @@ export function CalendarMock() {
           <Check className="size-4 shrink-0 text-emerald-600" />
           <div>
             <p className="text-sm font-medium text-ink">Google Calendar conectado</p>
-            <p className="text-xs text-muted-foreground">Julho · semana 13–17</p>
+            <p className="text-xs text-muted-foreground">Julho · semana de 13 a 17</p>
           </div>
         </div>
         <span className="flex shrink-0 items-center gap-2 rounded-full border border-line px-2.5 py-1">

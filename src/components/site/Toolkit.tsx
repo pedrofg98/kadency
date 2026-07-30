@@ -15,7 +15,7 @@ const BLOCKS = [
     number: '01',
     eyebrow: 'Sugestão de melhorias',
     title: 'Cada conversa vira uma sugestão de ajuste no roteiro.',
-    body: 'O agente marca onde travou, o que confundiu o lead e a resposta que faltou. As sugestões chegam com o trecho da conversa que as originou — e nenhuma entra no ar sem você aprovar.',
+    body: 'O agente marca onde travou, o que confundiu o lead e a resposta que faltou. As sugestões chegam com o trecho da conversa que as originou, e nenhuma entra no ar sem você aprovar.',
     image: sugestoes,
     alt: 'Balões de conversa empilhados com um destacado acima, representando a sugestão de melhoria',
   },
@@ -39,7 +39,7 @@ export function Toolkit() {
             O agente não fica parado no roteiro que você escreveu
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/60">
-            Ele melhora por dois caminhos — e em nenhum dos dois perde o contexto da conversa.
+            Ele melhora por dois caminhos, e em nenhum dos dois perde o contexto da conversa.
           </p>
         </Reveal>
 

@@ -20,7 +20,7 @@ const FEATURES: Feature[] = [
     id: 'atendimento',
     eyebrow: 'Inbox',
     title: 'Toda conversa do WhatsApp num lugar só',
-    body: 'O agente responde e o time acompanha em tempo real. Quando alguém precisa entrar, assume a conversa no meio dela — com o histórico inteiro na tela.',
+    body: 'O agente responde e o time acompanha em tempo real. Quando alguém precisa entrar, assume a conversa no meio dela, com o histórico inteiro na tela.',
     points: [
       'Chats ativos com o agente que está conduzindo cada um',
       'Follow-up automático de quem parou de responder',
@@ -33,7 +33,7 @@ const FEATURES: Feature[] = [
     id: 'agentes',
     eyebrow: 'Agentes',
     title: 'Um SDR para cada operação, no seu tom',
-    body: 'Comece de um agente pronto ou escreva o roteiro do zero. Cada um com base de conhecimento, perguntas de qualificação e limites próprios — e você liga e desliga quando quiser.',
+    body: 'Comece de um agente pronto ou escreva o roteiro do zero. Cada um com base de conhecimento, perguntas de qualificação e limites próprios. Você liga e desliga quando quiser.',
     points: [
       'Base de conhecimento própria por agente',
       'Aprendizado a partir das conversas que já aconteceram',

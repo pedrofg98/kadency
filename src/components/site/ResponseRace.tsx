@@ -17,7 +17,7 @@ const FIRST_REPLY = '00:20'
 
 const EVENTS = [
   { at: 20, label: 'Sibele respondeu no WhatsApp' },
-  { at: 74, label: 'Lead qualificado — orçamento e prazo no CRM' },
+  { at: 74, label: 'Lead qualificado, com orçamento e prazo no CRM' },
   { at: 132, label: 'Reunião marcada na agenda do closer' },
 ] as const
 
