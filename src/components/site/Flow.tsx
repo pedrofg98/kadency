@@ -45,8 +45,8 @@ const STEPS = [
     // entra depois do funil de propósito: é o funil que aponta quem esfriou,
     // e o follow-up é o que resgata esse lead até virar reunião
     icon: RotateCcw,
-    title: 'Volta em quem sumiu.',
-    caption: 'Follow-up sem ninguém lembrar.',
+    title: 'Faz o follow-up.',
+    caption: 'De quem parou de responder, sem ninguém lembrar.',
   },
   {
     icon: CalendarCheck,
@@ -178,7 +178,7 @@ export function Flow() {
                       <span
                         className={`flex size-11 items-center justify-center rounded-full transition-colors duration-500 ${
                           reached
-                            ? 'bg-coral text-ink'
+                            ? 'bg-coral text-white'
                             : 'border border-line bg-card text-muted-foreground'
                         }`}
                       >
@@ -228,7 +228,7 @@ export function Flow() {
                 {index < STEPS.length - 1 && (
                   <span className="absolute left-[1.375rem] top-11 h-full w-px bg-coral/25" />
                 )}
-                <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full bg-coral text-ink ring-2 ring-coral/25 ring-offset-4 ring-offset-wash">
+                <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full bg-coral text-white ring-2 ring-coral/25 ring-offset-4 ring-offset-wash">
                   <item.icon className="size-5" />
                 </span>
                 <div className="pt-1.5">

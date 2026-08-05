@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Clock, Moon, Bot, Users } from 'lucide-react'
+import { Clock, Moon, Users } from 'lucide-react'
 import { Reveal } from './motion/Reveal'
 import { registerReveal, prefersReducedMotion } from '@/lib/motion'
 
@@ -13,7 +13,6 @@ const CARDS = [
     unit: 'seg',
     note: 'Tempo médio para responder',
   },
-  { icon: Bot, label: 'Sem humano', value: '88', unit: '%', note: 'Conduzidas sem handoff' },
   {
     icon: Moon,
     label: 'Fora do horário',
@@ -101,7 +100,7 @@ export function Dashboard() {
           </h2>
         </Reveal>
 
-        <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CARDS.map((card, index) => (
             <Reveal as="li" key={card.label} delay={index * 90}>
               <div className="h-full rounded-2xl border border-line bg-card p-5 transition-shadow duration-300 hover:shadow-[0_1px_2px_rgba(31,31,31,0.04),0_20px_40px_-24px_rgba(31,31,31,0.2)]">
