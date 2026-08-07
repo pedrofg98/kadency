@@ -25,7 +25,7 @@ const INCLUSO = [
 const PLANOS = [
   {
     metodo: 'Pix',
-    valor: 'R$ 10.000',
+    valor: 'R$ 14.000',
     periodo: '/ano',
     nota: 'Plano anual pago à vista, no melhor preço.',
     destaque: true,
@@ -33,14 +33,14 @@ const PLANOS = [
   },
   {
     metodo: 'Cartão de crédito',
-    valor: 'R$ 1.200',
+    valor: 'R$ 1.500',
     periodo: '/mês',
     nota: 'Plano anual no cartão, ao longo de 12 meses.',
     destaque: false,
   },
   {
     metodo: 'Recorrência',
-    valor: 'R$ 1.500',
+    valor: 'R$ 1.800',
     periodo: '/mês',
     nota: 'Cobrança mensal automática, sem pagamento inicial.',
     destaque: false,
